@@ -14,33 +14,34 @@ MySQL
 因時間關係尚未測試到合適解決辦法。
 
 1.springboot的pom文件加入依賴
-
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-security</artifactId>
-</dependency>
+    
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
 
 2.新增user 鹽屬性
 
-public class User {
-    private String salt; // 新增存储鹽值
-}
-
-//3.寫一個 BCryptPasswordEncoder()加密方法
-
-@Configuration
-public class SecurityConfig {
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public class User {
+        private String salt; // 新增存储鹽值
     }
-}
+
+3.寫一個 BCryptPasswordEncoder()加密方法
+
+    @Configuration
+    public class SecurityConfig {
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+            return new BCryptPasswordEncoder();
+        }
+    }
 
 4.service注入PasswordEncoder加密bean 撰寫邏輯
+   
     @Autowired 
     private PasswordEncoder passwordEncoder;
     
-    // 註冊
+// 註冊
     
     public boolean isValadeRegist(String UserName, String PhoneNumber, String Password) {
         // 生成隨機鹽
@@ -51,7 +52,7 @@ public class SecurityConfig {
         return true;
     }
     
-    // 登入邏輯
+// 登入邏輯
     
     public boolean isValadeUser(String PhoneNumber, String Password) {
         if (userOpt.isPresent()) {
