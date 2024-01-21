@@ -65,14 +65,18 @@ public class SecurityConfig {
         }
         return false;
     }
+    
 //利用 SecureRandom產生鹽
+
     private String generateSalt() {
         SecureRandom random = new SecureRandom();
         byte[] saltBytes = new byte[16];
         random.nextBytes(saltBytes);
         return Base64.getEncoder().encodeToString(saltBytes);
     }
+    
 // 鹽加密碼後哈希的方法
+
     private String hashPassword(String password, String salt) {
         return passwordEncoder.encode(salt + password);
     }
