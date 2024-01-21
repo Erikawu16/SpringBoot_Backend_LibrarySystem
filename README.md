@@ -32,6 +32,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
+
 4.service注入PasswordEncoder加密bean 撰寫邏輯
     @Autowired 
     private PasswordEncoder passwordEncoder;
