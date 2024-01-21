@@ -72,6 +72,7 @@ public class serviceImpl implements service {
 	}
 
 	// 5.借閱書籍
+	@Transactional
 	@Override
 	public void borrowBook( Integer UserId,Integer InventoryId) {
 		dao.updateBorrowStatusToBorrowed(InventoryId);
@@ -79,7 +80,7 @@ public class serviceImpl implements service {
 	}
 
 	// 6.歸還書籍
-	
+	@Transactional
 	@Override
 	public void returnBook(Integer InventoryId,Integer userId) {
 		dao.updateBorrowStatusToCanBorrow(InventoryId);
