@@ -14,17 +14,20 @@ MySQL
 因時間關係尚未測試到合適解決辦法。
 
 1.springboot的pom文件加入依賴
+
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-security</artifactId>
 </dependency>
 
 2.新增user 鹽屬性
+
 public class User {
     private String salt; // 新增存储鹽值
 }
 
-3.寫一個 BCryptPasswordEncoder()加密方法
+//3.寫一個 BCryptPasswordEncoder()加密方法
+
 @Configuration
 public class SecurityConfig {
     @Bean
