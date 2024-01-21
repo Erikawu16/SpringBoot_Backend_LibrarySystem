@@ -35,24 +35,21 @@ public class SecurityConfig {
 
 4.service注入PasswordEncoder加密bean 撰寫邏輯
     @Autowired 
-    
     private PasswordEncoder passwordEncoder;
     
     // 註冊
-    public boolean isValadeRegist(String UserName, String PhoneNumber, String Password) {
     
+    public boolean isValadeRegist(String UserName, String PhoneNumber, String Password) {
         // 生成隨機鹽
         String salt = generateSalt();
-        
         // 鹽加哈希過的密碼
         String hashedPassword = hashPassword(Password, salt);
-        
         dao.addUser(UserName, PhoneNumber, hashedPassword, salt);
-        
         return true;
     }
     
     // 登入邏輯
+    
     public boolean isValadeUser(String PhoneNumber, String Password) {
         if (userOpt.isPresent()) {
             User user = userOpt.get();
@@ -80,4 +77,4 @@ public class SecurityConfig {
     private String hashPassword(String password, String salt) {
         return passwordEncoder.encode(salt + password);
     }
-}
+
